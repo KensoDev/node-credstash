@@ -25,7 +25,6 @@ Credstash.prototype.list = function(options, done) {
   return async.waterfall([
     async.apply(secrets.list, this.table, options),
     async.apply(keys.decrypt),
-    async.apply(hmac.check),
     async.apply(decrypter.decryptedObject)
   ], function (err, secrets) {
     if (err) {
